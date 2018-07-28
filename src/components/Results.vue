@@ -1,5 +1,5 @@
 <template>
-  <v-container grid-list-md justify-center>
+  <v-container grid-list-md justify-center v-if="has_result">
     <v-flex xs12>
       <br><br>
       <h2>Based on Landing Page Content</h2><br>
@@ -70,7 +70,10 @@ export default {
   computed:{
     results(){
       return store.state.results
-    } 
+    },
+    has_result(){
+      return store.state.results!=""
+    }
   }
 }
 </script>

@@ -4,8 +4,8 @@
       <v-container>
         <v-layout row wrap justify-center>
           <v-flex xs12 sm8 md7 >
-            <v-text-field
-              label="Input a topic..."
+            <v-text-field  v-model="landing_url"
+              label="Input the Landing Page Url..."
               solo
             ></v-text-field>
           </v-flex>
@@ -44,8 +44,9 @@ import store from '@/store.js'
 export default {
   name: 'Inputs',
   data: () => ({
-    items: ['Equity','ETF', 'Currency', 'Crypto', 'Option'],
+    items: ['Window'],//['Equity','ETF', 'Currency', 'Crypto', 'Option'],
     loading: false,
+    landing_url: 'http://www.excel-windows.com/ghl/index.cfm?ctid=3243&chid=603'
   }),
   methods: {
   	toggleMessage() {
@@ -54,7 +55,7 @@ export default {
       store.commit('clean_results')
       setTimeout(function(){
         self.loading = false
-        store.commit('pull_results')
+        store.commit('pull_results', self.$data.landing_url)
       }, 1000)
       this.loading = true
     }
