@@ -53,11 +53,17 @@ export default {
       console.log('ask ai')
       self = this
       store.commit('clean_results')
+      store.commit('pull_results', self.$data.landing_url)
+
       setTimeout(function(){
         self.loading = false
-        store.commit('pull_results', self.$data.landing_url)
-      }, 1000)
+      }, 2000)
       this.loading = true
+    }
+  },
+  computed:{
+    has_result(){
+      return store.state.results!=""
     }
   },
   watch: {
