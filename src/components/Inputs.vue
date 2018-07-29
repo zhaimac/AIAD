@@ -13,6 +13,7 @@
           <v-select
             :items="items"
             label="Select A Type..."
+            value= "Window"
             solo
           ></v-select>
         </v-flex>
@@ -23,7 +24,7 @@
         :disabled="loading"
         color="blue-grey"
         class="white--text"
-        @click.native="toggleMessage"
+        @click.native="ask_api"
       >
         Ask AI!
         <span slot="loader">Loading...</span>
@@ -45,25 +46,19 @@ export default {
   name: 'Inputs',
   data: () => ({
     items: ['Window'],//['Equity','ETF', 'Currency', 'Crypto', 'Option'],
-    loading: false,
-    landing_url: 'http://www.excel-windows.com/ghl/index.cfm?ctid=3243&chid=603'
+    landing_url: 'https://www.4feldco.com/Windows/'
   }),
   methods: {
-  	toggleMessage() {
-      console.log('ask ai')
-      self = this
-      store.commit('clean_results')
-      store.commit('pull_results', self.$data.landing_url)
-
-      setTimeout(function(){
-        self.loading = false
-      }, 2000)
-      this.loading = true
+  	ask_api() {
+      store.commit('pull_results', this.$data.landing_url)
     }
   },
   computed:{
     has_result(){
       return store.state.results!=""
+    },
+    loading(){
+      return store.state.loading
     }
   },
   watch: {

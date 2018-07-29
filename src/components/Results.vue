@@ -1,4 +1,5 @@
 <template>
+
   <v-container grid-list-md justify-center v-if="has_result">
     <v-flex xs12>
       <br><br>
@@ -7,8 +8,7 @@
         {{results.text}}
       </v-card>
     </v-flex>
-
-
+    
     <v-flex xs12>
       <br><br>
       <v-card>
